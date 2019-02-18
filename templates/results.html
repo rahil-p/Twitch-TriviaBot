@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>(results) TPS TriviaBot</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,500,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:800" rel="stylesheet">
+    <style>
+      table, th, td {
+        border: none;
+        border-collapse: collapse;
+        font-family: 'Roboto', sans-serif;
+      }
+
+      table{
+        width: 480px;
+        border: 3px solid #CC5490;
+      }
+
+      img{
+        vertical-align: middle;
+      }
+
+      #title{
+        font-family: 'Nunito', sans-serif;
+        background-image: linear-gradient(120deg, #B18CAC 18%, #343C44 22.5%, #343C44);
+        color: #deb0d7;
+        border-bottom: .25px solid rgba(220, 220, 220, .25);
+        font-size: 150%;
+        font-weight: 800;
+      }
+
+      #header{
+        height: 40px;
+        font-size: 100%;
+      }
+
+      #q_id{
+        width: 40px;
+        padding:2px;
+        background-color: #B18CAC;
+        color: black;
+        font-weight: 900;
+        font-size: 120%;
+      }
+
+      #question{
+        padding: 2px;
+        background-image: linear-gradient(120deg, #B18CAC 5%, #343C44 10%, #343C44);
+        color: white;
+        font-weight: 900;
+      }
+
+      #guide{
+        height: 20px;
+        padding: 1px;
+        background-color: #CACCCD;
+        font-weight: 300;
+        font-style: italic;
+      }
+
+      .guide2{
+        float: right;
+        padding-right: 10px;
+        color: #222222;
+        font-weight: 300;
+        font-style: italic;
+      }
+
+      #option{
+        height:25px;
+        padding:5px;
+        color: white;
+        font-size: 120%;
+        border-top: 1px solid white;
+      }
+
+      #answer{
+        height:25px;
+        padding:5px;
+        padding-left: 20px;
+        background-color: #9bb7ce;
+        border-top: 1px solid white;
+        color: black;
+      }
+
+      #count{
+        font-style: normal;
+        font-weight: 300;
+        color: #111111;
+      }
+
+      .percentages{
+        text-align: right;
+        padding-right: 10px;
+        background-color: #9bb7ce;
+        border-top: 1px solid white;
+        color: #444444;
+        font-weight: 300;
+        font-style: italic;
+      }
+
+      .ui-helper-center {
+        text-align: center;
+      }
+
+      .shiny {
+	      background: linear-gradient(-80deg, #696969 30%, #999999 50%, #696969 60%);
+	      background-size: 150% 100%;
+        background-position: -80% 0%;
+      }
+
+      .lol{
+        font-style: italic;
+        font-weight: 300;
+        font-size:90%;
+      }
+
+      @keyframes fade-select {
+	      0% {
+		      background-color: #9bb7ce;
+	      }
+
+        12% {
+          background-color: #cedce7;
+        }
+
+	      25% {
+		      background-color: #cedce7;
+	      }
+
+        100% {
+		      background-color: #cedce7;
+	      }
+      }
+
+      @keyframes linear-gradient {
+	      0% {
+		      background-position: -80% 0%
+	      }
+
+	      25% {
+		      background-position: 200% 200%
+	      }
+
+        100% {
+		      background-position: 200% 200%
+	      }
+      }
+    </style>
+  </head>
+  <body>
+    <table cellspacing="0" cellpadding="0">
+      <tr id="header">
+        <th id="title" colspan="3">
+          <img src="https://static1.squarespace.com/static/55359ac0e4b0a48fd270d2fa/t/5546f310e4b015ca719c53fd/1430713111513/" height=25 width=auto>
+          The Peach Stream Poll
+        </th>
+      </tr>
+      <tr id="header">
+        <th id="q_id">
+          {{ posts[0] }}
+        </th>
+        <th id="question" colspan="2">
+          {{ posts[1][0] }}
+        </th>
+      </tr>
+      <tr>
+        <td id="guide" class="ui-helper-center" colspan="3">
+
+        </td>
+      </tr>
+      {% for answer in posts[1][1] %}
+      <tr>
+
+        {% if loop.index in posts[2][2] %}
+        <th id="option" class="shiny" style="animation: linear-gradient 8s linear infinite;">
+          {{ loop.index }}
+        </th>
+        <td id="answer" style="animation: fade-select 32s ease-in-out; animation-fill-mode: forwards;">
+          {{ answer }}
+        </td>
+        <td class="percentages" style="animation: fade-select 32s ease-in-out; animation-fill-mode: forwards;">
+          <span>
+            [{% if posts[2][4] != 0 %} {{ posts[2][3] // posts[2][4] }} {% else %} {{0}} {% endif %} <img src="http://tagpro.lol/static/images/tagcoin_flag.png" height=15 width=auto>s per]
+          </span>
+          <span id="count">{{ posts[2][1][loop.index] }}</span> ({{ posts[3][loop.index] }}%)
+        </td>
+
+        {% else %}
+        <th id="option" class="shiny">
+          {{ loop.index }}
+        </th>
+        <td id="answer">
+          {{ answer }}
+        </td>
+        <td class="percentages">
+          <span id="count">{{ posts[2][1][loop.index] }}</span> ({{ posts[3][loop.index] }}%)
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+      <tr>
+        <th colspan="3" style="background-color: #f1f1f1;">
+          {{ posts[2][3] }} <img src="http://tagpro.lol/static/images/tagcoin_flag.png" height=15 width=auto>s <span class="lol">(sign up at tagpro.lol)</span>
+        </th>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>(display) TPS TriviaBot</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300i,500,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:800" rel="stylesheet">
+    <style>
+      table, th, td {
+        border: none;
+        border-collapse: collapse;
+        font-family: 'Roboto', sans-serif;
+      }
+
+      table{
+        width: 480px;
+        border: 3px solid #CC5490;
+      }
+
+      img{
+        vertical-align: middle;
+      }
+
+      #title{
+        font-family: 'Nunito', sans-serif;
+        background-image: linear-gradient(120deg, #B18CAC 18%, #343C44 22.5%, #343C44);
+        color: #deb0d7;
+        border-bottom: .25px solid rgba(220, 220, 220, .25);
+        font-size: 150%;
+        font-weight: 800;
+      }
+
+      #header{
+        height: 40px;
+        font-size: 100%;
+      }
+
+      #q_id{
+        width: 40px;
+        padding:2px;
+        background-color: #B18CAC;
+        color: black;
+        font-weight: 900;
+        font-size: 120%;
+      }
+
+      #question{
+        padding: 2px;
+        background-image: linear-gradient(120deg, #B18CAC 5%, #343C44 10%, #343C44);
+        color: white;
+        font-weight: 900;
+      }
+
+      #guide{
+        height: 20px;
+        padding: 1px;
+        background-color: #CACCCD;
+        font-weight: 300;
+        font-style: italic;
+      }
+
+      .guide2{
+        float: right;
+        padding-right: 10px;
+        color: #222222;
+        font-weight: 300;
+        font-style: italic;
+      }
+
+      #option{
+        height:25px;
+        padding:5px;
+        color: white;
+        font-size: 120%;
+        border-top: 1px solid white;
+      }
+
+      #answer{
+        height:25px;
+        padding:5px;
+        padding-left: 20px;
+        background-color: #9bb7ce;
+        border-top: 1px solid white;
+        color: black;
+      }
+
+      .ui-helper-center {
+        text-align: center;
+      }
+
+      .shiny {
+	      background: linear-gradient(-80deg, #696969 30%, #999999 50%, #696969 60%);
+	      background-size: 150% 100%;
+        background-position: -80% 0%;
+      }
+
+      .lol{
+        font-style: italic;
+        font-weight: 300;
+        font-size:90%;
+      }
+
+      @keyframes fade-select {
+	      0% {
+		      background-color: #9bb7ce;
+	      }
+
+        12% {
+          background-color: #cedce7;
+        }
+
+	      25% {
+		      background-color: #9bb7ce;
+	      }
+
+        100% {
+		      background-color: #9bb7ce;
+	      }
+      }
+
+      @keyframes linear-gradient {
+	      0% {
+		      background-position: -80% 0%
+	      }
+
+	      25% {
+		      background-position: 200% 200%
+	      }
+
+        100% {
+		      background-position: 200% 200%
+	      }
+      }
+
+      @-webkit-keyframes fadeInOut {
+        0% {
+          display: none;
+          opacity: 0;
+        }
+
+        1% {
+          display: block;
+          opacity: 0;
+        }
+
+        12% {
+          display: block;
+          opacity: 1;
+        }
+
+        24% {
+          display: block;
+          opacity: 0;
+        }
+
+        25% {
+          display: none;
+          opacity: 0;
+        }
+
+        25% {
+          display: none;
+          opacity: 0;
+        }
+
+        100% {
+          display: none;
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <table cellspacing="0" cellpadding="0">
+      <tr id="header">
+        <th id="title" colspan="2">
+          <img src="https://static1.squarespace.com/static/55359ac0e4b0a48fd270d2fa/t/5546f310e4b015ca719c53fd/1430713111513/" height=25 width=auto>
+          The Peach Stream Poll
+        </th>
+      </tr>
+      <tr id="header">
+        <th id="q_id">
+          {{ posts[0] }}
+        </th>
+        <th id="question">
+          {{ posts[1][0] }}
+        </th>
+      </tr>
+      <tr>
+        <td id="guide" class="ui-helper-center" colspan="2">
+          Chat '!answer' followed by an option number to submit your response (e.g. '!answer 2')
+        </td>
+      </tr>
+      {% for answer in posts[1][1] %}
+      <tr>
+        <th id="option" class="shiny" style="animation: linear-gradient 24s {{ (20 / loop.length) * loop.index0 }}s linear infinite;">
+          {{ loop.index }}
+        </th>
+        <td id="answer" style="animation: fade-select 24s {{ (20 / loop.length) * loop.index0 }}s ease-in-out infinite; animation-fill-mode: backwards;">
+          {{ answer }}
+          <a class="guide2" style="animation: fadeInOut 24s {{ (20 / loop.length) * loop.index0 }}s ease-in-out infinite; animation-fill-mode: backwards;">!answer {{ loop.index }}</a>
+        </td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <th colspan="2" style="background-color: #f1f1f1;">
+          {{ posts[2] }} <img src="http://tagpro.lol/static/images/tagcoin_flag.png" height=15 width=auto>s <span class="lol">(sign up at tagpro.lol)</span>
+        </th>
+      </tr>
+    </table>
+  </body>
+</html>
