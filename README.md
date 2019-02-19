@@ -5,7 +5,7 @@ a Twitch bot for overlaying custom trivia questions on a stream, capturing viewe
 
 ## Setup
 
-1) Listing questions, answers, and values in /questions
+### 1) Listing questions, answers, and values in /questions
 
 In ***questions.csv***, use the outline:
 
@@ -21,10 +21,32 @@ In ***values.csv***
 * Column A: question id
 * Column B: value assigned to the question (numbers based on some value system)
 
-2) Configuration for capturing Twitch chat
+### 2) Configuration for capturing Twitch chat
 
-3) 
+In OBS, link two separate browser sources to http://localhost:5000/display and http://localhost:5000/results.  These sources will display poll questions and results, respectively.
+
+### 3) Launching the programs
+
+In two separate terminal windows, run:
+```
+python overlay.py
+```
+and
+```
+python triviabot.py
+```
 
 
-## Response Tracking
+## Usage
+
+### Launch
+In a terminal window, run:
+```
+python overlay.py
+```
+
+In a separate terminal window, run:
+```
+python triviabot.py
+```
 
