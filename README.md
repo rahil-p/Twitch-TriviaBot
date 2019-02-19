@@ -5,7 +5,7 @@ a Twitch bot for overlaying custom trivia questions on a stream, capturing viewe
 
 ## Setup
 
-### /questions
+1) Listing questions, answers, and values in /questions
 
 In ***questions.csv***, use the outline:
 
@@ -21,7 +21,9 @@ In ***values.csv***
 * Column A: question id
 * Column B: value assigned to the question (numbers based on some value system)
 
-## Capture
+2) Configuration for capturing Twitch chat
+
+3) 
 
 
 ## Response Tracking
