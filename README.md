@@ -21,7 +21,21 @@ In ***values.csv***
 * Column A: question id
 * Column B: value assigned to the question (numbers based on some value system)
 
-### 2) Configuration for capturing Twitch chat
+### 2) Configuring to capture Twitch chat
+
+In ***config.py***, configure credentials for capturing Twitch chat on a channel.
+```python
+HOST = 'irc.twitch.tv'
+PORT = 6667
+NICK = [user nickname]
+PASS = [oauth]
+CHAN = [#channel]
+
+leader = [#leader]
+leader_name = [leader]
+```
+
+### 3) Sourcing the overlays in OBS
 
 In OBS, link two separate browser sources to http://localhost:5000/display and http://localhost:5000/results.  These sources will display poll questions and results, respectively.
 
@@ -36,17 +50,8 @@ and
 python triviabot.py
 ```
 
-
 ## Usage
 
-### Launch
-In a terminal window, run:
-```
-python overlay.py
-```
+### 
 
-In a separate terminal window, run:
-```
-python triviabot.py
-```
 
